@@ -1,0 +1,1 @@
+## This is production-ready subscription management system
