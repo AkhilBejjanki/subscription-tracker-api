@@ -13,7 +13,7 @@ import errorMiddleware from './middlewares/error.middleware.js';
 
 const app = express();
 
-app.use(express.json);
+app.use(express.json());
 app.use(express.urlencoded( { extended: false}));
 app.use(cookieParser());
 
@@ -25,13 +25,13 @@ app.use(errorMiddleware);
 
 app.get('/', (req, res) => {
     res.send("Welcome to Subscription Tracker API!!");
-})
+});
 
 app.listen(PORT, async () => {
-    console.log(`Server in running in the http://localhost:${PORT}`);
+    console.log(`Subscription Tracker API is running on http://localhost:${PORT}`);
 
     await connectToDatabase();
 
-})
+});
 
 export default app;

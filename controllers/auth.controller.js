@@ -3,8 +3,7 @@ import bcrypt from 'bcryptjs';
 import jwt from 'jsonwebtoken';
 import { JWT_SECRET, JWT_EXPIRES_IN } from '../config/env.js';
 
-import User from './models/user.model.js';
-
+import User from '../models/user.model.js';
 
 export const signUp = async (req, res, next) => {
     const session = await mongoose.startSession();
@@ -28,12 +27,12 @@ export const signUp = async (req, res, next) => {
 
         const newUsers = await User.create([{ name, email, password : hashedPassword}], {session});
 
-        const token = jwt.sign( {userId : newUsers[0]._id}, JWT_SECRET, {expires_in : JWT_EXPIRES_IN} );
+        const token = jwt.sign( {userId : newUsers[0]._id}, JWT_SECRET, {expiresIn : JWT_EXPIRES_IN} );
 
         await session.commitTransaction();
         session.endSession();
 
-        res.statusCode(201).json({
+        res.status(201).json({
             success : true,
             messsage : "User created successfully",
             data : {
@@ -48,3 +47,7 @@ export const signUp = async (req, res, next) => {
         next(error);
     }
 }
+
+export const signIn = async (req, res, next) => { }
+
+export const signOut = async (req, res, next) => { }
