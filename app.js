@@ -17,6 +17,8 @@ const app = express();
 app.use(express.json());
 app.use(express.urlencoded( { extended: false}));
 app.use(cookieParser());
+
+app.set("trust proxy", true);
 app.use(arcjetMiddleware);
 
 app.use('/api/v1/auth', authRouter);
