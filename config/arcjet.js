@@ -25,12 +25,19 @@ import { ARCJET_KEY } from "./env.js";
 const aj = arcjet({
   key: ARCJET_KEY,
   characteristics: [
-    (req) => ({
-      ip:
-        req.headers["x-forwarded-for"]?.split(",")[0] ||
+    (req) => {
+      let ip =
+        req.headers["x-forwarded-for"] ||
         req.headers["x-real-ip"] ||
-        req.socket?.remoteAddress,
-    }),
+        req.socket?.remoteAddress;
+
+      if (Array.isArray(ip)) ip = ip[0];
+      if (typeof ip !== "string" || ip.length === 0) {
+        ip = "0.0.0.0"; // fallback string
+      }
+
+      return ip;
+    },
   ],
 
   rules: [
