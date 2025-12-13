@@ -24,15 +24,14 @@ import { ARCJET_KEY } from "./env.js";
 
 const aj = arcjet({
   key: ARCJET_KEY,
-  characteristics: {
-    ip: (req) => {
-      return (
+  characteristics: [
+    (req) => ({
+      ip:
         req.headers["x-forwarded-for"]?.split(",")[0] ||
         req.headers["x-real-ip"] ||
-        req.socket?.remoteAddress
-      );
-    },
-  },
+        req.socket?.remoteAddress,
+    }),
+  ],
 
   rules: [
     shield({ mode: "LIVE" }),
