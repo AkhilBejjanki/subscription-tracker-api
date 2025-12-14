@@ -9,86 +9,129 @@ export const generateEmailTemplate = ({
   supportLink,
   daysLeft,
 }) => `
-<div style="font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; line-height: 1.6; color: #333; max-width: 600px; margin: 0 auto; padding: 0; background-color: #f5f3f9;">
-    <table cellpadding="0" cellspacing="0" border="0" width="100%" style="background-color: #ffffff; border-radius: 10px; overflow: hidden; box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);">
-        <tr>
-            <td style="background-color: #8b6fb3; text-align: center;">
-                <p style="font-size: 32.4px; line-height: 32.4px; font-weight: 800; color: #ffffff;">Subscription Tracker</p>
-            </td>
-        </tr>
-        <tr>
-            <td style="padding: 40px 30px;">                
-                <p style="font-size: 16px; margin-bottom: 25px;">Hello <strong style="color: #8b6fb3;">${userName}</strong>,</p>
-                
-                <p style="font-size: 16px; margin-bottom: 25px;">Your <strong>${subscriptionName}</strong> subscription is set to renew on <strong style="color: #8b6fb3;">${renewalDate}</strong> (${daysLeft} days from today).</p>
-                
-                <table cellpadding="15" cellspacing="0" border="0" width="100%" style="background-color: #f3e8fb; border-radius: 10px; margin-bottom: 25px;">
-                    <tr>
-                        <td style="font-size: 16px; border-bottom: 1px solid #e0c9f0;">
-                            <strong>Plan:</strong> ${planName}
-                        </td>
-                    </tr>
-                    <tr>
-                        <td style="font-size: 16px; border-bottom: 1px solid #e0c9f0;">
-                            <strong>Price:</strong> ${price}
-                        </td>
-                    </tr>
-                    <tr>
-                        <td style="font-size: 16px;">
-                            <strong>Payment Method:</strong> ${paymentMethod}
-                        </td>
-                    </tr>
-                </table>
-                
-                <p style="font-size: 16px; margin-bottom: 25px;">If you'd like to make changes or cancel your subscription, please visit your <a href="${accountSettingsLink}" style="color: #8b6fb3; text-decoration: none;">account settings</a> before the renewal date.</p>
-                
-                <p style="font-size: 16px; margin-top: 30px;">Need help? <a href="${supportLink}" style="color: #8b6fb3; text-decoration: none;">Contact our support team</a> anytime.</p>
-                
-                <p style="font-size: 16px; margin-top: 30px;">
-                    Best regards,<br>
-                    <strong>The Subscription Tracker Team</strong>
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Subscription Renewal Reminder</title>
+</head>
+<body style="margin: 0; padding: 0; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif; background-color: #f8f9fb;">
+  <div style="max-width: 600px; margin: 0 auto; padding: 20px;">
+    <!-- Main Card -->
+    <table cellpadding="0" cellspacing="0" border="0" width="100%" style="background-color: #ffffff; border-radius: 12px; overflow: hidden; box-shadow: 0 1px 3px rgba(0, 0, 0, 0.08);">
+      
+      <!-- Minimal Header -->
+      <tr>
+        <td style="padding: 24px 32px; border-bottom: 1px solid #f0f0f0;">
+          <p style="margin: 0; font-size: 14px; font-weight: 600; color: #1b6b4a; text-transform: uppercase; letter-spacing: 0.5px;">Subscription</p>
+        </td>
+      </tr>
+      
+      <!-- Main Content -->
+      <tr>
+        <td style="padding: 32px;">
+          <!-- Greeting -->
+          <p style="margin: 0 0 24px 0; font-size: 18px; color: #1a1a1a; font-weight: 500;">Hey ${userName},</p>
+          
+          <!-- Message -->
+          <p style="margin: 0 0 32px 0; font-size: 15px; line-height: 1.6; color: #555;">
+            Your <strong style="color: #1a1a1a;">${subscriptionName}</strong> subscription renews on <strong style="color: #1a1a1a;">${renewalDate}</strong> — that's in ${daysLeft} ${daysLeft === 1 ? 'day' : 'days'}.
+          </p>
+          
+          <!-- Details Card -->
+          <div style="background-color: #f8f9fb; border-left: 4px solid #1b6b4a; border-radius: 8px; padding: 20px; margin-bottom: 32px;">
+            <table cellpadding="0" cellspacing="0" border="0" width="100%">
+              <tr>
+                <td style="padding: 8px 0;">
+                  <p style="margin: 0; font-size: 13px; color: #888;">Plan</p>
+                  <p style="margin: 4px 0 0 0; font-size: 15px; color: #1a1a1a; font-weight: 500;">${planName}</p>
+                </td>
+              </tr>
+              <tr>
+                <td style="padding: 12px 0;">
+                  <p style="margin: 0; font-size: 13px; color: #888;">Amount</p>
+                  <p style="margin: 4px 0 0 0; font-size: 15px; color: #1a1a1a; font-weight: 500;">${price}</p>
+                </td>
+              </tr>
+              <tr>
+                <td style="padding: 12px 0;">
+                  <p style="margin: 0; font-size: 13px; color: #888;">Payment Method</p>
+                  <p style="margin: 4px 0 0 0; font-size: 15px; color: #1a1a1a; font-weight: 500;">${paymentMethod}</p>
+                </td>
+              </tr>
+            </table>
+          </div>
+          
+          <!-- CTA Buttons -->
+          <table cellpadding="0" cellspacing="0" border="0" width="100%" style="margin-bottom: 24px;">
+            <tr>
+              <td style="padding-right: 12px;">
+                <a href="${accountSettingsLink}" style="display: block; background-color: #1b6b4a; color: #ffffff; text-decoration: none; border-radius: 6px; padding: 12px 24px; font-size: 14px; font-weight: 600; text-align: center;">Manage Subscription</a>
+              </td>
+              <td style="padding-left: 12px;">
+                <a href="${supportLink}" style="display: block; background-color: #f0f0f0; color: #1a1a1a; text-decoration: none; border-radius: 6px; padding: 12px 24px; font-size: 14px; font-weight: 600; text-align: center;">Get Help</a>
+              </td>
+            </tr>
+          </table>
+          
+          <!-- Secondary Message -->
+          <p style="margin: 0; font-size: 14px; line-height: 1.6; color: #888;">
+            Want to update your plan or payment method? Head to your account settings before renewal. No surprises, no hassle.
+          </p>
+        </td>
+      </tr>
+      
+      <!-- Footer -->
+      <tr>
+        <td style="padding: 24px 32px; border-top: 1px solid #f0f0f0; background-color: #fafbfc;">
+          <table cellpadding="0" cellspacing="0" border="0" width="100%">
+            <tr>
+              <td style="padding-bottom: 16px;">
+                <p style="margin: 0; font-size: 12px; color: #888;">Subscription Tracker Inc.</p>
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <p style="margin: 0; font-size: 12px;">
+                  <a href="#" style="color: #1b6b4a; text-decoration: none; margin-right: 16px;">Unsubscribe</a>
+                  <a href="#" style="color: #1b6b4a; text-decoration: none; margin-right: 16px;">Privacy</a>
+                  <a href="#" style="color: #1b6b4a; text-decoration: none;">Terms</a>
                 </p>
-            </td>
-        </tr>
-        <tr>
-            <td style="background-color: #f3e8fb; padding: 20px; text-align: center; font-size: 14px;">
-                <p style="margin: 0 0 10px;">
-                    Subscription Tracker Inc. | 123 Main St, Anytown, AN 12345
-                </p>
-                <p style="margin: 0;">
-                    <a href="#" style="color: #8b6fb3; text-decoration: none; margin: 0 10px;">Unsubscribe</a> | 
-                    <a href="#" style="color: #8b6fb3; text-decoration: none; margin: 0 10px;">Privacy Policy</a> | 
-                    <a href="#" style="color: #8b6fb3; text-decoration: none; margin: 0 10px;">Terms of Service</a>
-                </p>
-            </td>
-        </tr>
+              </td>
+            </tr>
+          </table>
+        </td>
+      </tr>
     </table>
-</div>
+  </div>
+</body>
+</html>
 `;
 
 export const emailTemplates = [
   {
     label: "7 days before reminder",
     generateSubject: (data) =>
-      `📅 Reminder: Your ${data.subscriptionName} Subscription Renews in 7 Days!`,
+      `Your ${data.subscriptionName} renews in 7 days`,
     generateBody: (data) => generateEmailTemplate({ ...data, daysLeft: 7 }),
   },
   {
     label: "5 days before reminder",
     generateSubject: (data) =>
-      `⏳ ${data.subscriptionName} Renews in 5 Days – Stay Subscribed!`,
+      `${data.subscriptionName} renews in 5 days`,
     generateBody: (data) => generateEmailTemplate({ ...data, daysLeft: 5 }),
   },
   {
     label: "2 days before reminder",
     generateSubject: (data) =>
-      `🚀 2 Days Left! ${data.subscriptionName} Subscription Renewal`,
+      `Quick reminder: ${data.subscriptionName} renews in 2 days`,
     generateBody: (data) => generateEmailTemplate({ ...data, daysLeft: 2 }),
   },
   {
-    label: "1 days before reminder",
+    label: "1 day before reminder",
     generateSubject: (data) =>
-      `⚡ Final Reminder: ${data.subscriptionName} Renews Tomorrow!`,
+      `${data.subscriptionName} renews tomorrow`,
     generateBody: (data) => generateEmailTemplate({ ...data, daysLeft: 1 }),
   },
 ];
